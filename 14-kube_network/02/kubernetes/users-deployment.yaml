@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: users-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: users
+  template: 
+    metadata: 
+      labels:
+        app: users
+    spec:
+      containers:
+        # 1st container
+        - name: users
+          image: etevabharat/kub-demo-users:latest
+          env: 
+            - name: AUTH_ADDRESS
+              value: "auth-service.default"   # `serviceName + nameSpace` ==> prefered way
+              # value: "10.108.37.71" # ipAddress (user has to look into it manually by using `kubectl get services`)
+        # #   # 2nd container in same pod
+        # - name: auth
+        #   image: etevabharat/kub-demo-auth:latest
+          

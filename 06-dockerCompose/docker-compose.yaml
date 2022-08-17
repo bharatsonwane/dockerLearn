@@ -1,0 +1,53 @@
+version: '3.8' # docker compose version ==> https://docs.docker.com/compose/compose-file/
+services:
+  ## services ==> containers ==> all services define in one compose file that already will be the part of same network
+  mongodb: 
+    image: 'mongo'
+    volumes:
+      - data:/data/db # named volume
+    container_name: mongodb         # container Name
+    # environment:
+    #   MONGO_INITDB_ROOT_USERNAME: max
+    #   MONGO_INITDB_ROOT_PASSWORD: secret
+    #   # - MONGO_INITDB_ROOT_USERNAME=max
+    #   # - MONGO_INITDB_ROOT_PASSWORD=secret
+    env_file:
+      - ./env/mongo.env
+    # networks:
+    #   - goals-net
+  backend:
+    build: ./backend
+    # build:
+    #   context: ./backend          # folder path
+    #   dockerfile: Dockerfile      # dockerFileName
+    #   args:                       # argument list
+    #     - some-arg=1
+    ports:
+      - '80:80'                     # HOST_PORT:CONTAINER_INTERNAL_PORT
+    volumes:
+      - logs:/app/logs              # named volumes
+      - ./backend:/app              # bindMount 
+      - /app/node_modules           # anonymous volume
+    env_file:
+      - ./env/backend.env
+    depends_on:
+      - mongodb
+
+  frontend:
+    build: ./frontend
+    ports:
+      - '3030:3000'
+    volumes:
+      - ./frontend/src:/app/src     # bindMount
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    # env_file:
+    #   - ./env/frontend.env   
+    stdin_open: true                # this service/container need open input connection
+    tty: true                       # attaching to terminal
+    depends_on:
+      - backend
+
+volumes: ## specified named volume list => same level as services
+  data:
+  logs:

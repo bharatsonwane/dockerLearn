@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: host-pv
+spec: 
+  capacity: 
+    storage: 1Gi  # doc ==> https://github.com/kubernetes/design-proposals-archive/blob/main/scheduling/resources.md
+  volumeMode: Filesystem # storage type ==> Block/Filesystem
+  storageClassName: standard
+  accessModes: # https://kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes
+    - ReadWriteOnce   # can be claim by single node & can be by multiple pods
+    # - ReadOnlyMany    # can be claim by multiple node & for hostPath not available Cos hostPath deals with single node
+    # - ReadWriteMany   # can be claim by multiple node & for hostPath not available Cos hostPath deals with single node
+  hostPath: 
+    path: /data
+    type: DirectoryOrCreate

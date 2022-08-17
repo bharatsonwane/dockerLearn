@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-service
+spec:
+  selector:
+    app: frontend
+  type: LoadBalancer    #ClusterIP ==> (default) internal cluster not for outside world && #NodePort ==> can reach from outside but using ip address
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
