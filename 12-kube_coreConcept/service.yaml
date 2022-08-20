@@ -14,6 +14,6 @@ spec:
       port: 80
       targetPort: 8080
     # - protocol: "TCP"
-    #   port: 80
-    #   targetPort: 8080
-  type: LoadBalancer
+    #   port: 443
+    #   targetPort: 443
+  type: LoadBalancer # ClusterIP / NodePort

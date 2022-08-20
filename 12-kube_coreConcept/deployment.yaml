@@ -1,13 +1,13 @@
 # kubectl apply -f deployment.yaml
 apiVersion: apps/v1
-kind: Deployment
+kind: Deployment              # object type
 metadata: 
   name: second-app-deployment
   labels: 
     group: example
-spec: 
-  replicas: 1
-  selector:
+spec:                         # specification of deployment
+  replicas: 1                 # pods
+  selector:                   # selector selects the to be control pods
     matchLabels:
       app: second-app
       tier: backend
@@ -16,10 +16,10 @@ spec:
   template: 
     metadata: 
       labels: 
-        app: second-app
+        app: second-app  # label name & value set by us
         tier: backend
-    spec: 
-      containers: 
+    spec:                       # specification of pod
+      containers:               # constiner list
         - name: second-node
           image: etevabharat/kub-first-app:2
           imagePullPolicy: Always
@@ -29,3 +29,5 @@ spec:
               port: 8080
             periodSeconds: 10
             initialDelaySeconds: 5
+        # - name: third-node
+        #   image: ...

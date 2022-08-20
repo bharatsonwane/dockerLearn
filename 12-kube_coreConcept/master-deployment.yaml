@@ -1,0 +1,54 @@
+# kubectl apply -f service.yaml
+# minikube service backend
+apiVersion: v1
+kind: Service
+metadata: 
+  name: backend
+  labels: 
+    group: example
+spec: 
+  selector: 
+    app: second-app
+  ports:
+    - protocol: "TCP"
+      port: 80
+      targetPort: 8080
+    # - protocol: "TCP"
+    #   port: 443
+    #   targetPort: 443
+  type: LoadBalancer # ClusterIP / NodePort
+
+---
+# kubectl apply -f deployment.yaml
+apiVersion: apps/v1
+kind: Deployment              # object type
+metadata: 
+  name: second-app-deployment
+  labels: 
+    group: example
+spec:                         # specification of deployment
+  replicas: 1                 # pods
+  selector:                   # selector selects the to be control pods
+    matchLabels:
+      app: second-app
+      tier: backend
+    # matchExpressions: 
+    #   - {key: app, operator: In, values: [second-app, first-app]}
+  template: 
+    metadata: 
+      labels: 
+        app: second-app  # label name & value set by us
+        tier: backend
+    spec:                       # specification of pod
+      containers:               # constiner list
+        - name: second-node
+          image: etevabharat/kub-first-app:2
+          imagePullPolicy: Always
+          livenessProbe: 
+            httpGet: 
+              path: /
+              port: 8080
+            periodSeconds: 10
+            initialDelaySeconds: 5
+        # - name: third-node
+        #   image: ...
