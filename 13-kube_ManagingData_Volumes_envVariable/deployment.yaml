@@ -4,7 +4,7 @@ metadata:
   name: story-deployment
 spec: 
   replicas: 2
-  selector: 
+  selector:                                   # selector selects the to be control pods
     matchLabels: 
       app: story
   template: 
@@ -22,15 +22,15 @@ spec:
                 configMapKeyRef: 
                   name: data-store-env # metadataName
                   key: folder
-          volumeMounts:
-            - mountPath: /app/story
+          volumeMounts:                               # bind volume to conatiner
+            - mountPath: /app/story                   # 
               name: story-volume
-      volumes: 
+      volumes:                                        # define all volume that should be part of pod
         - name: story-volume
           # emptyDir: {} # volume Type ==> pod specific & data survive when container restart but can not share with multiple pods/container
           # hostPath: # like bindMount ==> not pod specific but it is node specific
           #   path: /data
           #   type: DirectoryOrCreate
           persistentVolumeClaim: 
-            claimName: host-pvc
+            claimName: host-pvc                       # volume claim name
           

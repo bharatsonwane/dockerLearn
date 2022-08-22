@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: story-service
 spec: 
-  selector: 
+  selector:  # selector selects the to be control pods
     app: story
   type: LoadBalancer
   ports: 

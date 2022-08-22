@@ -1,3 +1,5 @@
+# hostpath persistent volume
+# not independent from node
 apiVersion: v1
 kind: PersistentVolume
 metadata:
@@ -6,7 +8,7 @@ spec:
   capacity: 
     storage: 1Gi  # doc ==> https://github.com/kubernetes/design-proposals-archive/blob/main/scheduling/resources.md
   volumeMode: Filesystem # storage type ==> Block/Filesystem
-  storageClassName: standard
+  storageClassName: standard    # storage class
   accessModes: # https://kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes
     - ReadWriteOnce   # can be claim by single node & can be by multiple pods
     # - ReadOnlyMany    # can be claim by multiple node & for hostPath not available Cos hostPath deals with single node
