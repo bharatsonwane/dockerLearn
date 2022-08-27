@@ -39,7 +39,11 @@
 * docker run -p 3000:80 -d --rm --name node-app etevabharat/node-hello-world
 
 ### stop container
-docker stop *CONTAINER_NAME*
+* docker stop *CONTAINER_NAME*
+* docker stop node-app
+
+### start container
+* docker start node-app
 
 <!-- copy from hostFileSystem to containerFileSystem  -->
 ### copy something (file) into container & copy something outof container
