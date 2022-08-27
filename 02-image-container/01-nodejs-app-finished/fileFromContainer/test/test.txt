@@ -1,0 +1,3 @@
+In this folder (./fileFromContainer/test) copying file from container.
+
+Copying file from container to this folder(./01-nodejs-app-finished/fileFromContainer/test).

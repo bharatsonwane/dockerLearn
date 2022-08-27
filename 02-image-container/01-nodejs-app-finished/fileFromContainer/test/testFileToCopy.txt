@@ -1,0 +1,2 @@
+copy file from host to continer
+copy file from container to host
