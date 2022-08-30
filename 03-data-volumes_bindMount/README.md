@@ -35,15 +35,15 @@
 ## application --------------------------------------------------------
 * docker build -t feedback-node:volumes .
 <!-- ro ==> read only -->
-* docker run -p 3003:80 --env-file *ENV_FILE_NAME* -d --rm --name feedback-app -v "*CONTAINER_PATH*" -v "*CONTAINER_PATH*"  -v *VOLUME_NAME:CONTAINER_PATH* -v 
+* docker run -p 3043:80 --env-file *ENV_FILE_NAME* -d --rm --name feedback-app -v "*CONTAINER_PATH*" -v "*CONTAINER_PATH*"  -v *VOLUME_NAME:CONTAINER_PATH* -v 
 "*PROJECT_FOLDER_ABSOLUTE_PATH:CONTAINER_PATH:ro*" feedback-node:volumes 
 * *$(pwd)* ==> "E:\bharatProject\dockerLearn\03-data-volumes_bindMount" ==> current working directory
-* docker run -p 3003:8000 --env-file ./.env -d --rm --name feedback-app -v "/app/node_modules" -v "/app/temp" -v "feedback:/app/feedback" -v "$(pwd):/app" feedback-node:volumes
+* docker run -p 3043:8000 --env-file ./.env -d --rm --name feedback-app -v "/app/node_modules" -v "/app/temp" -v "feedback:/app/feedback" -v "$(pwd):/app" feedback-node:volumes
 
 
 ### feedback-app
 docker build -t feedback-node .
-docker run -p 3003:80 -d --rm --name feedback-app feedback-node
+docker run -p 3043:80 -d --rm --name feedback-app feedback-node
 
 
 

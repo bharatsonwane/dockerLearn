@@ -35,8 +35,8 @@
 
 ### run container
 * docker run *port HOST_SYSTEM_PORT:CONTIANER_PORT* *-ditached* *-remove*  *--name CONTAINER_NAME* *IMAGE_NAME:IMAGE_VERSION*
-<!-- * docker run -p 3002:80 -d --rm --name node-app node-demo:latest -->
-* docker run -p 3002:80 -d --rm --name node-app etevabharat/node-hello-world
+<!-- * docker run -p 3042:80 -d --rm --name node-app node-demo:latest -->
+* docker run -p 3042:80 -d --rm --name node-app etevabharat/node-hello-world
 
 ### stop container
 * docker stop *CONTAINER_NAME*
@@ -49,7 +49,7 @@
 
 #### application --------------------------------------------------------
 * docker build -t node-demo:latest ./01-nodejs-app-finished
-* docker run -p 3002:80 -d --rm --name node-app node-demo:latest
+* docker run -p 3042:80 -d --rm --name node-app node-demo:latest
 
 
 <!-- copy from hostFileSystem to containerFileSystem  -->
