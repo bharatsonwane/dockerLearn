@@ -23,7 +23,7 @@ services:
     #   args:                       # argument list
     #     - some-arg=1
     ports:
-      - '80:80'                     # HOST_PORT:CONTAINER_INTERNAL_PORT
+      - '30461:80'                     # HOST_PORT:CONTAINER_INTERNAL_PORT
     volumes:
       - logs:/app/logs              # named volumes
       - ./backend:/app              # bindMount 
@@ -36,7 +36,7 @@ services:
   frontend:
     build: ./frontend
     ports:
-      - '3030:3000'
+      - '3046:3000'
     volumes:
       - ./frontend/src:/app/src     # bindMount
     environment:

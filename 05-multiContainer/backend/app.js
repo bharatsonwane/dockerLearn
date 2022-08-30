@@ -83,6 +83,20 @@ app.delete('/goals/:id', async (req, res) => {
   }
 });
 
+
+app.get('/test', async (req, res) => {
+  try {
+    res.status(200).json({
+      test: "testing done"
+    });
+    console.log('FETCHED GOALS');
+  } catch (err) {
+    console.error('ERROR FETCHING GOALS');
+    console.error(err.message);
+    res.status(500).json({ message: 'Failed to goal test.' });
+  }
+});
+
 mongoose.connect(
   // `mongodb://max:secret@mongocontainer:27017/course-goals?authSource=admin`,
   `mongodb://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@mongocontainer:27017/course-goals?authSource=admin`,
