@@ -13,11 +13,11 @@
 
 ### favorites app
 * docker network create favorites-net
-* docker run -d --name mongodbContainer --network favorites-net mongo
+* docker run -d -v mongoData4:/data/db --network favorites-net --name mongodbContainer4 mongo
 
 
 * docker build -t favorites-node .
-* docker run --name favorites --network favorites-net -d --rm -p 3044:3000  favorites-node
+* docker run -d --rm -p 3044:3000 --network favorites-net --name favorites favorites-node
 
 
 

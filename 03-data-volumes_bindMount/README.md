@@ -5,6 +5,8 @@
 # data
 
 ## volumes (Manage by Docker)
+* docker volume ls
+* docker volume prune
 * We dont know location where volume data store on hostFileSystem.
 ### anonymous volume (Manage by Docker) ==> e.g.==> docker run -v /app/data
 * this volume attached to specific container
@@ -48,5 +50,4 @@ docker run -p 3043:80 -d --rm --name feedback-app feedback-node
 
 
 docker stop feedback-app
-docker volume ls
 

@@ -98,8 +98,8 @@ app.get('/test', async (req, res) => {
 });
 
 mongoose.connect(
-  // `mongodb://max:secret@mongocontainer:27017/course-goals?authSource=admin`,
-  `mongodb://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@mongocontainer:27017/course-goals?authSource=admin`,
+  // `mongodb://max:secret@mongocontainer5:27017/course-goals?authSource=admin`,
+  `mongodb://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@mongocontainer5:27017/course-goals?authSource=admin`,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
