@@ -1,11 +1,14 @@
 version: '3.8' # docker compose version ==> https://docs.docker.com/compose/compose-file/
+networks:
+  default:
+    name: goals6
 services:
   ## services ==> containers ==> all services define in one compose file that already will be the part of same network
-  mongodb: 
+  mongodbContainer6: 
     image: 'mongo'
     volumes:
-      - data:/data/db # named volume
-    container_name: mongodb         # container Name
+      - mongoData6:/data/db # named volume
+    container_name: mongodbContainer6         # container Name
     # environment:
     #   MONGO_INITDB_ROOT_USERNAME: max
     #   MONGO_INITDB_ROOT_PASSWORD: secret
@@ -15,7 +18,7 @@ services:
       - ./env/mongo.env
     # networks:
     #   - goals-net
-  backend:
+  backend6:
     build: ./backend
     # build:
     #   context: ./backend          # folder path
@@ -25,15 +28,15 @@ services:
     ports:
       - '30461:80'                     # HOST_PORT:CONTAINER_INTERNAL_PORT
     volumes:
-      - logs:/app/logs              # named volumes
+      - backendLogs6:/app/logs              # named volumes
       - ./backend:/app              # bindMount 
       - /app/node_modules           # anonymous volume
     env_file:
       - ./env/backend.env
     depends_on:
-      - mongodb
+      - mongodbContainer6
 
-  frontend:
+  frontend6:
     build: ./frontend
     ports:
       - '3046:3000'
@@ -46,8 +49,8 @@ services:
     stdin_open: true                # this service/container need open input connection
     tty: true                       # attaching to terminal
     depends_on:
-      - backend
+      - backend6
 
 volumes: ## specified named volume list => same level as services
-  data:
-  logs:
+  mongoData6:
+  backendLogs6:
