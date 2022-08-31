@@ -51,6 +51,16 @@ services:
     depends_on:
       - backend6
 
+  frontendreactbuild6:
+    build: ./frontendReactBuild
+    ports:
+      - '30462:80'
+    # env_file:
+    #   - ./env/frontend.env
+    depends_on:
+    - backend6    
+  
+
 volumes: ## specified named volume list => same level as services
   mongoData6:
   backendLogs6:
