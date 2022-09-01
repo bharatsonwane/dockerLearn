@@ -28,7 +28,7 @@ function GoalInput(props) {
     <section id='goal-input'>
       <Card>
         <form onSubmit={goalSubmitHandler}>
-          <h1>Docker Compose for {envDescription} 123</h1>
+          <h1>Docker Compose for {envDescription} </h1>
           <label htmlFor='text'>New Goal</label>
           <input
             type='text'
