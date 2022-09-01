@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon -L app.js",
-    "start-prod": "app.js",
+    "start-prod": "node app.js",
     "build": "esbuild --bundle app.js --outfile=build/nodeServer.js --minify --platform=node"
   },
   "author": "Maximilian Schwarzmüller / Academind GmbH",
