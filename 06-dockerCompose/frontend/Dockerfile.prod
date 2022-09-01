@@ -7,6 +7,9 @@ COPY package.json .
 
 RUN npm install
 
+#These need to be passed when building the docker image (using --build-args parameter)
+ARG REACT_APP_ENV_TITLE
+
 # Copy app files
 COPY . .
 

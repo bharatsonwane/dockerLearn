@@ -23,7 +23,7 @@ function GoalInput(props) {
     setEnteredGoalText('');
   }
 
-  const envDescription = process.env.ENV_TITLE ? process.env.ENV_TITLE : "DEVELOPMENT env with bindMount"
+  const envDescription = process.env.REACT_APP_ENV_TITLE ? process.env.REACT_APP_ENV_TITLE : "DEVELOPMENT"
   return (
     <section id='goal-input'>
       <Card>

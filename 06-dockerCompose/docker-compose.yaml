@@ -38,7 +38,12 @@ services:
 
 # react app for dev env
   frontend6:
-    build: ./frontend
+    # build: ./frontend
+    build:
+      context: ./frontend               # folder path
+      dockerfile: Dockerfile            # dockerFileName
+      args:
+        REACT_APP_ENV_TITLE: "DEVELOPMENT env with bindMount (dockerCompose argument)"
     ports:
       - '3046:3000'
     volumes:
@@ -55,10 +60,12 @@ services:
     build:
       context: ./frontend               # folder path
       dockerfile: Dockerfile.prod       # dockerFileName
+      args:
+        REACT_APP_ENV_TITLE: "PRODUCTION build with nginx (dockerCompose argument)"
     ports:
       - '30462:80'
-    env_file:
-      - ./env/frontendProd.env
+    # env_file:
+    #   - ./env/frontendProd.env
     depends_on:
     - backend6    
   
