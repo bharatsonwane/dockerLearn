@@ -18,11 +18,12 @@ services:
       - ./env/mongo.env
     # networks:
     #   - goals-net
+
   backend6:
-    build: ./backend
-    # build:
-    #   context: ./backend          # folder path
-    #   dockerfile: Dockerfile      # dockerFileName
+    build:
+      context: ./backend          # folder path
+      dockerfile: Dockerfile      # dockerFileName
+      target: development
     #   args:                       # argument list
     #     - some-arg=1
     ports:
@@ -36,6 +37,23 @@ services:
     depends_on:
       - mongodbContainer6
 
+
+  # backend_production6:
+  #   build:
+  #     context: ./backend          # folder path
+  #     dockerfile: Dockerfile      # dockerFileName
+  #     target: production
+  #   #   args:                       # argument list
+  #   #     - some-arg=1
+  #   ports:
+  #     - '304602:80'                     # HOST_PORT:CONTAINER_INTERNAL_PORT
+  #   volumes:
+  #     - backendLogs6:/app/logs              # named volumes
+  #   env_file:
+  #     - ./env/backend.env
+  #   depends_on:
+  #     - mongodbContainer6
+
 # react app for dev env
   frontend6:
     # build: ./frontend
@@ -45,7 +63,7 @@ services:
       args:
         REACT_APP_ENV_TITLE: "DEVELOPMENT env with bindMount (dockerCompose argument)"
     ports:
-      - '3046:3000'
+      - '30463:3000'
     volumes:
       - ./frontend/src:/app/src     # bindMount
     env_file:
@@ -56,14 +74,14 @@ services:
       - backend6
 
 # react app for prod env
-  frontend_react_build6:
+  frontend_production6:
     build:
       context: ./frontend               # folder path
       dockerfile: Dockerfile.prod       # dockerFileName
       args:
         REACT_APP_ENV_TITLE: "PRODUCTION build with nginx (dockerCompose argument)"
     ports:
-      - '30462:80'
+      - '30464:80'
     # env_file:
     #   - ./env/frontendProd.env
     depends_on:

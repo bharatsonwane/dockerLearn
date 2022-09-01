@@ -10,6 +10,8 @@ const Goal = require('./models/goal');
 
 const app = express();
 
+const NODEJS_PORT = process.env.NODEJS_PORT || 80;
+
 const accessLogStream = fs.createWriteStream(
   path.join(__dirname, 'logs', 'access.log'),
   { flags: 'a' }
@@ -95,7 +97,7 @@ mongoose.connect(
       console.error(err);
     } else {
       console.log('CONNECTED TO MONGODB!!');
-      app.listen(80);
+      app.listen(NODEJS_PORT);
     }
   }
 );
