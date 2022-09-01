@@ -43,10 +43,8 @@ services:
       - '3046:3000'
     volumes:
       - ./frontend/src:/app/src     # bindMount
-    environment:
-      - CHOKIDAR_USEPOLLING=true
-    # env_file:
-    #   - ./env/frontend.env   
+    env_file:
+      - ./env/frontend.env   
     stdin_open: true                # this service/container need open input connection
     tty: true                       # attaching to terminal
     depends_on:
@@ -54,11 +52,13 @@ services:
 
 # react app for prod env
   frontend_react_build6:
-    build: ./frontendReactBuild
+    build:
+      context: ./frontend               # folder path
+      dockerfile: Dockerfile.prod       # dockerFileName
     ports:
       - '30462:80'
-    # env_file:
-    #   - ./env/frontend.env
+    env_file:
+      - ./env/frontendProd.env
     depends_on:
     - backend6    
   
