@@ -38,21 +38,21 @@ services:
       - mongodbContainer6
 
 
-  # backend_production6:
-  #   build:
-  #     context: ./backend          # folder path
-  #     dockerfile: Dockerfile      # dockerFileName
-  #     target: production
-  #   #   args:                       # argument list
-  #   #     - some-arg=1
-  #   ports:
-  #     - '304602:80'                     # HOST_PORT:CONTAINER_INTERNAL_PORT
-  #   volumes:
-  #     - backendLogs6:/app/logs              # named volumes
-  #   env_file:
-  #     - ./env/backend.env
-  #   depends_on:
-  #     - mongodbContainer6
+  backend_production6:
+    build:
+      context: ./backend          # folder path
+      dockerfile: Dockerfile      # dockerFileName
+      target: production
+    #   args:                       # argument list
+    #     - some-arg=1
+    ports:
+      - '30462:82'                     # HOST_PORT:CONTAINER_INTERNAL_PORT
+    volumes:
+      - backendProductionLogs6:/app/logs              # named volumes
+    env_file:
+      - ./env/backend.env
+    depends_on:
+      - mongodbContainer6
 
 # react app for dev env
   frontend6:
@@ -91,3 +91,4 @@ services:
 volumes: ## specified named volume list => same level as services
   mongoData6:
   backendLogs6:
+  backendProductionLogs6:
