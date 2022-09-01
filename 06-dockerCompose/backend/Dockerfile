@@ -26,9 +26,8 @@ CMD ["npm", "start"]
 
 
 # ------------------------------------------------
-# PRODUCTION
-#  **Production 1st stage**
-FROM node:16 AS builder
+# PRODUCTION 
+FROM node:16 AS production
 
 ENV NODE_ENV production
 # Add a work directory
@@ -38,21 +37,15 @@ WORKDIR /app
 
 COPY package.json .
 
-RUN npm install --production
+RUN npm install --omit=dev
 
 # Copy app files
 COPY . .
 
-# Build
-RUN npm run build
-
-# **Production 2nd stage**
-FROM node:16 AS production
-
-# Copy built assets/bundle from the builder
-COPY --from=builder /app/build .
-
 EXPOSE 82
 
+ENV MONGODB_USERNAME=root
+ENV MONGODB_PASSWORD=secret
+
 # Start the app
-CMD node nodeServer.js
+CMD ["npm", "run", "start-prod"]
