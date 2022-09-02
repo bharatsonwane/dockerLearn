@@ -1,11 +1,11 @@
 # docker compose
 
 ## build images & start container
-* docker-compose up
+*  docker compose --env-file ./env/argumentAll.env up
 <!-- -d ==> ditached mode -->
-* docker-compose up -d
+* docker compose --env-file ./env/argumentAll.env up -d
 <!-- force new build images -->
-* docker-compose up --build
+* docker compose --env-file ./env/argumentAll.env up --build
 
 
 ## stop & remove container

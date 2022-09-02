@@ -61,7 +61,7 @@ services:
       context: ./frontend               # folder path
       dockerfile: Dockerfile            # dockerFileName
       args:
-        REACT_APP_ENV_TITLE: "DEVELOPMENT env with bindMount (dockerCompose argument)"
+        REACT_APP_ENV_TITLE: ${REACT_APP_ENV_TITLE_DEV}
     ports:
       - '30463:3000'
     volumes:
@@ -79,7 +79,7 @@ services:
       context: ./frontend               # folder path
       dockerfile: Dockerfile.prod       # dockerFileName
       args:
-        REACT_APP_ENV_TITLE: "PRODUCTION build with nginx (dockerCompose argument)"
+        REACT_APP_ENV_TITLE: ${REACT_APP_ENV_TITLE_PROD}
     ports:
       - '30464:80'
     # env_file:
