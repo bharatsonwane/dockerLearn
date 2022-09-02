@@ -18,8 +18,8 @@ COPY . .
 # Expose port
 EXPOSE 80
 
-ENV MONGODB_USERNAME=root
-ENV MONGODB_PASSWORD=secret
+ENV MONGODB_USERNAME=username
+ENV MONGODB_PASSWORD=password
 
 # Start the app
 CMD ["npm", "start"]
@@ -44,8 +44,8 @@ COPY . .
 
 EXPOSE 82
 
-ENV MONGODB_USERNAME=root
-ENV MONGODB_PASSWORD=secret
+ENV MONGODB_USERNAME=username
+ENV MONGODB_PASSWORD=password
 
 # Start the app
 CMD ["npm", "run", "start-prod"]

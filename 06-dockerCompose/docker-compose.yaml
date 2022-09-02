@@ -46,7 +46,7 @@ services:
     #   args:                       # argument list
     #     - some-arg=1
     ports:
-      - '30462:82'                     # HOST_PORT:CONTAINER_INTERNAL_PORT
+      - '30462:80'                     # HOST_PORT:CONTAINER_INTERNAL_PORT
     volumes:
       - backendProductionLogs6:/app/logs              # named volumes
     env_file:
