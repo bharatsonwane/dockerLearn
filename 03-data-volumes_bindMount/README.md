@@ -43,7 +43,7 @@
 * *$(pwd)* ==> "E:\bharatProject\dockerLearn\03-data-volumes_bindMount" ==> current working directory
 * docker run -p 3043:8000 --env-file ./.env -d --rm --name feedback-app -v "/app/node_modules" -v "/app/temp" -v "feedback:/app/feedback" -v "$(pwd):/app" feedback-node:volumes
 
-
+* path ==> http://localhost:3043/feedback/test.txt
 ### feedback-app
 docker build -t feedback-node .
 docker run -p 3043:80 -d --rm --name feedback-app feedback-node
