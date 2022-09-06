@@ -11,6 +11,7 @@
 ### anonymous volume (Manage by Docker) ==> e.g.==> docker run -v /app/data
 * this volume attached to specific container
 * exist only if container exists & if container remove then attached volume also removed.
+* anonymous volume is use to certain part of the hostmachine folder should not be override in the image folder. (e.g. /app/temp folder should not override in the image folder)
 
 * docker run -p 3001:80 -d --rm --name feedback-app -v "*CONTAINER_PATH*" feedback-node:volumes 
 * docker run -p 3001:80 -d --rm --name feedback-app -v "/app/node_modules" feedback-node:volumes
